@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{% static 'main/css/reg.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <title>Edit Profile</title>
+</head>
+<body onload="check()">
+    <div class="form edit">
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for item in form %}
+            <div class="form_group">
+                {{item}}
+                <div class="form_label">{{item.name}}</div>
+            </div>
+            {% endfor %}
+            <input type="hidden" value="{{user.username}}" id="username">
+            <input type="hidden" value="{{user.bio}}" id="bio">
+            <input type="hidden" value="{{user.email}}" id="email">
+            <input type="hidden" value="{{user.phone}}" id="phone">
+            <button type="submit" class="form_btn">change</button>
+        </form>
+    </div>
+    
+    <script>
+        function check() {
+            let a = document.getElementsByClassName('errorlist');
+            for (let el of a) {
+                el.remove()
+            }
+            
+            new_username = document.getElementById('id_new_username');
+            new_bio = document.getElementById('id_new_bio');
+            new_email = document.getElementById('id_new_email');
+            new_phone = document.getElementById('id_new_phone');
+            username = document.getElementById('username');
+            document.getElementById('id_new_username').classList.add('form_input');
+            document.getElementById('id_new_bio').classList.add('form_input', 'inp');
+            document.getElementById('id_new_email').classList.add('form_input');
+            document.getElementById('id_new_phone').classList.add('form_input');
+            console.log(username)
+            bio = document.getElementById('bio');
+            email = document.getElementById('email');
+            phone = document.getElementById('phone');
+            if (!new_username.value) {
+                new_username.value = username.value;
+            }
+            if (!new_bio.value) {
+                new_bio.value = bio.value;
+            }
+            if (!new_email.value) {
+                new_email.value = email.value;
+            }
+            if (!new_phone.value) {
+                new_phone.value = phone.value;
+            }
+            
+        }
+    </script>
+</body>
+</html>

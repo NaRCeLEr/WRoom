@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+{% for i in posts %}
+<div class="list_area">
+    <div class="post">
+        {{fr}}
+        <div class="prof">
+            {% if i.user.image %}
+            <a href=""><img src="{{i.user.image.url}}" alt="" class="prof_post_img"></a>
+            {% endif %}
+            <h4 class="prof_username"><a href="{% url 'profile' %}">{{i.user.username}}</a></h4>
+        </div>
+        {% if i.image %}
+        <div class="post_img">
+            
+                <img src="{{i.image.url}}" alt="">
+            
+        </div>
+        {% endif %}
+        <div class="post_other">
+            {{i.title}}
+            {{i.text}}
+        </div>
+    </div>
+</div>
+
+
+
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main/css/reg.css' %}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="register">
+        <div class="form_title">
+            <h1>LogIn</h1>
+        </div>
+        {% if form.errors %}
+                {{form.errors.error}}
+        {% endif %}
+        <form method="post" class="form" action="{% url 'login' %}">
+            {% csrf_token %}
+            <!-- {{form.as_p}} -->
+            {% for item in form %}
+            <div class="form_group">
+                {{item}}
+                <div class="form_label" id="username">{{item.name}}</div>
+            </div>
+            {% endfor %}
+            <button type="submit" class="form_btn">Войти</button>
+
+            
+        </form>
+    </div>
+    <script>
+        document.getElementById('id_username').classList.add('form_input')
+        document.getElementById('id_password').classList.add('form_input')
+    </script>
+</body>
+</html>
