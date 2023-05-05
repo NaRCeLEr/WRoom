@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <title>Document</title>
+</head>
+<body onload="check()">
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for item in form %}
+        <input type="hidden" value="{{post.title}}" id="title">
+        <div class="it">{{item}}</div>
+        {% endfor %}
+        <button type="submit">change</button>
+    </form>
+
+    <script>
+        function check() {
+            let a = document.getElementsByClassName('errorlist');
+            for (let el of a) {
+                el.remove()
+            }
+
+            new_title = document.getElementById('id_new_title');
+            title = document.getElementById('title');
+            if (!new_title.value) {
+                new_title.value = title.value;
+            }
+
+        }
+    </script>
+</body>
+</html>

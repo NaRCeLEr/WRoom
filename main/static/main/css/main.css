@@ -12,7 +12,7 @@ a {
     margin: 0;
     padding: 0px;
     display: flex;
-    background-color: bisque;
+    background-color: #F38181;
     max-height: 100px;
 }
 
@@ -53,6 +53,7 @@ a {
     height: 600px;
     padding: 32px;
     border-radius: 10px;
+    border: 1px solid #FBE8D3;
     box-shadow: 0 4px 16px #ccc;
     font-family: sans-serif;
     letter-spacing: 1px;
@@ -100,9 +101,11 @@ a {
     padding-bottom: 25px;
     padding-right: 32px;
     border-radius: 10px;
+    border: 1px solid #FBE8D3;
     box-shadow: 0 4px 16px #ccc;
     font-family: sans-serif;
     letter-spacing: 1px;
+    min-height: 80px;
 }
 .post_other {
     margin-top: 10px;
@@ -121,4 +124,19 @@ a {
 .prof_username {
     margin-left: 7px;
     margin-top: 15px;
+}
+
+.logout_btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #922304;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.post {
+    min-height: 100px;
 }

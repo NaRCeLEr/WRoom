@@ -16,18 +16,30 @@
         <h3 class="item-phone">{{user.phone}}</h3>
     </div>
     <a href="{% url 'change' %}" class="change_btn">Edit</a>
+    <div class="logout">
+        <a href="{% url 'logout' %}" class="logout_btn">LogOut</a>
+    </div>
 </div>
 
-<div class="logout">
-    <a href="{% url 'logout' %}">LogOut</a>
-</div>
+
 
 <div class="posts">
     {% for post in posts %}
-    <div class="profile_post">
-        {% if post.image %}
-        <a href=""><img src="{{post.image.url}}" alt=""></a>
-        {% endif %}
+    <div class="list_area">
+        <div class="post">
+            <div class="post_title">
+                {{post.title}}
+            </div>
+            {% if post.image %}
+            <a href=""><img src="{{post.image.url}}" alt=""></a>
+            {% endif %}
+            {{post.text}}
+            <div class="edit_btn">
+                <a href="{% url 'post_edit' pk=post.pk %}" class="change_btn">Edit</a>
+            </div>
+        </div>
+        
+        
     </div>
     {% endfor %}
 </div>

@@ -49,7 +49,31 @@ def home(request):
     }
     return render(request, 'main/index.html', context=context)
 
-# Create your views here.
+
+def post_edit(request, pk):
+    form = posteditForm(request.POST)
+    post = Post.objects.get(pk=pk)
+
+    if form.is_valid():
+        post.title = form.cleaned_data.get('new_title') if form.cleaned_data.get('new_title') else post.title
+        post.title = form.cleaned_data.get('new_image') if form.cleaned_data.get('new_image') else post.title
+        post.title = form.cleaned_data.get('new_text') if form.cleaned_data.get('new_text') else post.title
+        post.save()
+        
+        
+        return redirect('home')
+
+
+    context = {
+            'form': form,
+            'post': post
+        }
+
+    return render(request, 'main/postedit.html', context=context)
+
+
+
+
 def change(request):
     form = ChangeForm(request.POST)
 
@@ -88,4 +112,5 @@ def profile(request):
 def logout_user(requset):
     logout(requset)
     return redirect('login')
+
 

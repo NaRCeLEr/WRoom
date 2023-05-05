@@ -33,3 +33,9 @@ class ChangeForm(forms.Form):
     new_bio = forms.CharField(widget=forms.Textarea(), required=False)
     new_email = forms.EmailField(required=False)
     new_phone = PhoneNumberField(required=False)
+
+
+class posteditForm(forms.Form):
+    new_title = forms.CharField(max_length=100)
+    new_image = forms.ImageField(required=False)
+    new_text = forms.CharField(widget=forms.Textarea(), required=False)

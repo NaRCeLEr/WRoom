@@ -11,6 +11,6 @@ urlpatterns = [
     path('change', change, name='change'),
     path('profile', profile, name='profile'),
     path('logout', logout_user, name='logout'),
-
+    path('post_edit/<int:pk>/', post_edit, name='post_edit'),
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
