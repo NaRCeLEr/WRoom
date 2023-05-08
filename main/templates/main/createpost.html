@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for i in form %}
+    <div class="form-post">
+        {{i}}
+        {% if i.name != 'user' %}
+        {{i.name}}
+        {% endif %}
+    </div>
+    
+    {% endfor %}
+    <button type="submit">Create</button>
+</form>
+<script>
+    document.getElementById('id_user').remove()
+</script>
+{% endblock %}

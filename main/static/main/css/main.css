@@ -1,6 +1,8 @@
 body {
     margin: 0;
     padding: 0;
+    height: auto;
+    background-color: #e4e3e3;
 }
 
 a {
@@ -8,32 +10,53 @@ a {
     color: black;
 }
 
+main {
+    width: 80%;
+    margin-bottom: 5px;
+    float: right;
+}
+
+.aside {
+    margin-left: 5px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    width: 15%;
+    background-color: #fff;
+    padding-left: 10px;
+    z-index: -1;
+    position: absolute;
+}
+
+.aside_item {
+    margin-top: 10px;
+}
+
 .header {
     margin: 0;
     padding: 0px;
     display: flex;
-    background-color: #F38181;
+    background-color: #FF7F50;
     max-height: 100px;
 }
 
 .logo {display: flex; width: 210px;}
-.title {margin-left: 20px; width: 200px;}
+.title {margin-left: 20px; width: 200px; color: #593507;}
 .register {text-align: center;}
-.nav {
-    display: flex;
-    margin-left: 350px;
-    margin-right: auto;
-    text-align: center;
-    padding-top: 2%;
-    width: 70%;
-}
-
-.item-nav {margin-left: 15px;}
 
 .reg {
-    width: 50px;
-    padding-top: 2%;
-    margin-right: 30px;
+    width: 30%;
+    padding-top: 1%;
+    font-size: 30px;
+    margin-left: 73%;
+    float: right;
+    display: flex;
+}
+
+.username_head {
+    margin-right: 10px;
+    margin-top: 2.5%;
+    color: black;
 }
 
 
@@ -48,6 +71,7 @@ a {
 
 .img {align-items: center;}
 .profile {
+    background-color: #fff;
     margin-top: 20px;
     width: 400px;
     height: 600px;
@@ -58,10 +82,10 @@ a {
     font-family: sans-serif;
     letter-spacing: 1px;
     align-items: center;
-    margin-left: 30%;
+    margin-left: auto;
+    margin-right: auto;
     width: 500px;
 }
-
 
 .profile-img {height: 200px; width: 200px; margin-left: auto; margin-right: auto; display: block;}
 
@@ -94,7 +118,7 @@ a {
 .list_area {
     margin-left: auto;
     margin-right: auto;
-    width: 550px;
+    width: 500px;
     margin-top: 20px;
     padding-top: 20px;
     padding-left: 32px;
@@ -106,6 +130,7 @@ a {
     font-family: sans-serif;
     letter-spacing: 1px;
     min-height: 80px;
+    background-color: #fff;
 }
 .post_other {
     margin-top: 10px;
@@ -115,6 +140,7 @@ a {
     height: 50px;
     width: 50px;
     border-radius: 50%;
+    margin-bottom: 15px;
 }
 
 .prof {
@@ -139,4 +165,57 @@ a {
 
 .post {
     min-height: 100px;
+    width: 500px;
+    background-color: #fff;
+}
+
+.box{
+    margin-top: 10px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    height: 70px;
+    width: 300px;
+}
+
+.input {
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    background: none;
+    border: 3px solid #ffd52d;
+    border-radius: 40px;
+    box-sizing: border-box;
+    font-family: Comic Sans MS;
+    font-size: 26px;
+    color: #ffd52d;
+    outline: none;
+    transition: .5s;
+}
+.box:hover input{
+    width: 200px;
+    background: #c6534f;
+    border-radius: 10px;
+}
+.box i{
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(-50%,-50%);
+    font-size: 26px;
+    color: #ffd52d;
+    transition: .2s;
+}
+.box:hover i{
+    opacity: 0;
+    z-index: -1;
+}
+
+.posts {
+    width: 565px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 32px;
+    align-items: center;
 }

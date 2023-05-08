@@ -1,6 +1,8 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+
+
 {% for i in posts %}
 <div class="list_area">
     <div class="post">
@@ -13,9 +15,7 @@
         </div>
         {% if i.image %}
         <div class="post_img">
-            
                 <img src="{{i.image.url}}" alt="">
-            
         </div>
         {% endif %}
         <div class="post_other">
@@ -33,4 +33,9 @@
 
 
 {% endfor %}
+
+<script>
+    a = '{{posts}}'
+    console.log(a)
+</script>
 {% endblock %}

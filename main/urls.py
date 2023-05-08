@@ -12,5 +12,7 @@ urlpatterns = [
     path('profile', profile, name='profile'),
     path('logout', logout_user, name='logout'),
     path('post_edit/<int:pk>/', post_edit, name='post_edit'),
+    path('search_friends', Search.as_view(), name='Search_friends'),
+    path('create_post', PostV, name='create_post'),
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

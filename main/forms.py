@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from .models import *
 from django.forms import forms, ModelForm
 from django import forms
 from phonenumber_field.formfields import PhoneNumberField
@@ -39,3 +40,15 @@ class posteditForm(forms.Form):
     new_title = forms.CharField(max_length=100)
     new_image = forms.ImageField(required=False)
     new_text = forms.CharField(widget=forms.Textarea(), required=False)
+
+
+class PostForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = ['user', 'title', 'text', 'image', 'cat']
+
+class PostF(forms.Form):
+    user = forms.CharField(required=False)
+    title = forms.CharField(max_length=100)
+    text = forms.CharField(widget=forms.Textarea())
+    image = forms.ImageField(required=False)

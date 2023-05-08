@@ -1,14 +1,19 @@
+from typing import Any, Dict
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView
+from django.db.models.query import QuerySet
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, View
+from django.views.generic import CreateView, View, ListView
 from .forms import *
 from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth import authenticate
 from .models import *
+import json
+
+from users.models import User as USER
 
 
 class RegisterUser(CreateView):
@@ -41,7 +46,10 @@ def home(request):
         a.append(i.pk)
     posts = []
     for i in a:
-        posts.append(Post.objects.get(user=i))
+        x = Post.objects.filter(user=i)
+        for c in x:
+            posts.append(c)
+
     context = {
         'posts': posts,
         'username': username,
@@ -59,8 +67,7 @@ def post_edit(request, pk):
         post.title = form.cleaned_data.get('new_image') if form.cleaned_data.get('new_image') else post.title
         post.title = form.cleaned_data.get('new_text') if form.cleaned_data.get('new_text') else post.title
         post.save()
-        
-        
+         
         return redirect('home')
 
 
@@ -114,3 +121,52 @@ def logout_user(requset):
     return redirect('login')
 
 
+class Search(ListView):
+    model = USER
+    template_name = 'main/friends_search.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['qs_json'] = json.dumps(list(USER.objects.values()), default=str)
+        return context
+    
+
+def search(request):
+    search_q = request.GET.get('q')
+    users = User.objects.filter(username__contains=search_q)
+
+    search_users = []
+
+    for i in users:
+        search_users.append(i)
+    return render(request, 'main/index.html', {'usere': search_users})
+
+
+class PostView(CreateView):
+    template_name = 'main/createpost.html'
+    form_class = PostForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
+    
+    def get_success_url(self):
+        return reverse_lazy('home')
+
+
+
+def PostV(request):
+      form = PostF(request.POST, request.FILES)
+      context = {
+          'user': request.user,
+          'title': request.POST.get('title'),
+          'text': request.POST.get('text'),
+          'image': request.FILES.get('image')
+      }
+      form = PostF(context)
+      if form.is_valid():
+        post = Post(title=context['title'], text=context['text'], user=context['user'], cat_id=1, image = context['image'] if context['image'] else None)
+        post.save()
+        return redirect('home')
+      return render(request, 'main/createpost.html', {'form': form})

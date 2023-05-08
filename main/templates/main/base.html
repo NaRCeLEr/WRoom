@@ -18,15 +18,12 @@
             </div>
             
         </div>
-        <div class="nav">
-            <a href="{% url 'home' %}" class="item-nav">home</a>
-            <a href="#" class="item-nav">about</a>
-            <a href="#" class="item-nav">contacts</a>
-            <a href="#" class="item-nav">help</a>
-        </div>
         {% if request.user.is_authenticated %}
         <div class="reg">
-            <a href="{% url 'profile' %}">{{username}}</a>
+            <a href="{% url 'profile' %}" class="username_head">{{username}}</a>
+            {% if user.image %}
+            <img src="{{user.image.url}}" alt="" class="prof_post_img">
+            {% endif %}
         </div>
         {% else %}
         <div class="reg">
@@ -36,7 +33,17 @@
         {% endif %}
         
     </div>
-    {% block content %}
-    {% endblock %}
+
+    <aside class="aside">
+        <div class="aside_item">
+            <a href="{% url 'Search_friends' %}">Find friends</a>
+        </div>
+        
+    </aside>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    
 </body>
 </html>
