@@ -41,12 +41,6 @@ class posteditForm(forms.Form):
     new_image = forms.ImageField(required=False)
     new_text = forms.CharField(widget=forms.Textarea(), required=False)
 
-
-class PostForm(ModelForm):
-    class Meta:
-        model = Post
-        fields = ['user', 'title', 'text', 'image', 'cat']
-
 class PostF(forms.Form):
     user = forms.CharField(required=False)
     title = forms.CharField(max_length=100)

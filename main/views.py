@@ -127,34 +127,11 @@ class Search(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['qs_json'] = json.dumps(list(USER.objects.values()), default=str)
+        a = USER.objects.exclude(friends = self.request.user).values()
+        context['qs_json'] = json.dumps(list(a), default=str)
+        context['pos'] = self.request.POST
         return context
     
-
-def search(request):
-    search_q = request.GET.get('q')
-    users = User.objects.filter(username__contains=search_q)
-
-    search_users = []
-
-    for i in users:
-        search_users.append(i)
-    return render(request, 'main/index.html', {'usere': search_users})
-
-
-class PostView(CreateView):
-    template_name = 'main/createpost.html'
-    form_class = PostForm
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['user'] = self.request.user
-        return context
-    
-    def get_success_url(self):
-        return reverse_lazy('home')
-
-
 
 def PostV(request):
       form = PostF(request.POST, request.FILES)
@@ -170,3 +147,16 @@ def PostV(request):
         post.save()
         return redirect('home')
       return render(request, 'main/createpost.html', {'form': form})
+
+
+def addFriend(request):
+
+    a = request.POST.get('username')
+    if a != '':
+        user = request.user
+        user2 = USER.objects.get(username=a)
+        user.friends.add(user2)
+        user2.friends.add(user)
+        return redirect('home')
+
+    return render(request, 'main/friends_search.html', {'pos': a})

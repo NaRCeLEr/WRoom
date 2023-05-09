@@ -14,5 +14,6 @@ urlpatterns = [
     path('post_edit/<int:pk>/', post_edit, name='post_edit'),
     path('search_friends', Search.as_view(), name='Search_friends'),
     path('create_post', PostV, name='create_post'),
+    path('add_friend', addFriend, name='friend')
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
