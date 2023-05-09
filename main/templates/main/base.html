@@ -36,7 +36,19 @@
 
     <aside class="aside">
         <div class="aside_item">
-            <a href="{% url 'Search_friends' %}">Find friends</a>
+            <img src="{% static 'main/img/home.png' %}" alt="" class="icon"><a href="{% url 'home' %}" class="aside_a">Home</a>
+        </div>
+        <div class="aside_item">
+            <img src="{% static 'main/img/addpost.png' %}" alt="" class="icon"><a href="{% url 'create_post' %}" class="aside_a">Create Post</a>
+        </div>
+        <div class="aside_item">
+            <img src="{% static 'main/img/lup.png' %}" alt="" class="icon"><a href="{% url 'Search_friends' %}" class="aside_a">Find friends</a>
+        </div>
+        <div class="aside_item">
+            <img src="{% static 'main/img/profile.png' %}" alt="" class="icon"><a href="{% url 'profile' %}" class="aside_a">Profile</a>
+        </div>
+        <div class="aside_item">
+            <img src="{% static 'main/img/logout.png' %}" alt="" class="icon"><a href="{% url 'logout' %}" class="aside_a">LogOut</a>
         </div>
         
     </aside>

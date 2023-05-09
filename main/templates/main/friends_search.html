@@ -13,7 +13,7 @@
         <form name="search" action="{% url 'Search_friends' %}" class="search_box">
             {% csrf_token %}
             {% csrf_token %}
-            <input type="text" class="input" name="txt" onmouseout="this.value = ''; this.blur();" placeholder="search" id="search">
+            <input type="text" class="input" name="txt" onmouseout="this.value = ''; this.blur();" placeholder="" id="search">
             
         </form>
         <i class="fas fa-search"></i>
@@ -40,12 +40,14 @@
             if (filter != '') {
                 for (i = 0; i < rdata.length; i++) {
                     item = rdata[i]
+                    console.log(item)
                     txtValue = item['username'];
 
                     if (txtValue.indexOf(filter) > -1) {
                         let div = document.createElement('div')
                         document.getElementById('username').value = txtValue
-                        div.innerHTML = `<button value=${txtValue} name=${txtValue} onclick=add(this)>${txtValue}</button>`
+                        div.innerHTML = `<img src='/media/${item['image']}' class='search_img' alt=' '></img><h3>${txtValue}</h3><button class='search_btn' value=${txtValue} name=${txtValue} onclick=add(this) ></button>`
+                        div.classList.add('search_div')
 
                         boxx.append(div)
                     }

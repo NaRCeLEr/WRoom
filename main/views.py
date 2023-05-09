@@ -82,7 +82,7 @@ def post_edit(request, pk):
 
 
 def change(request):
-    form = ChangeForm(request.POST)
+    form = ChangeForm(request.POST, request.FILES)
 
     if form.is_valid():
         username = request.user.username
@@ -94,6 +94,7 @@ def change(request):
         new_email = form.cleaned_data.get('new_email')
         new_phone = form.cleaned_data.get('new_phone')
         user = User.objects.get(username=username)
+        user.image = request.FILES.get('new_image')
         user.username = new_username if new_username else user.username
         user.bio = new_bio if new_bio else user.bio
         user.email = new_email if new_email else user.email

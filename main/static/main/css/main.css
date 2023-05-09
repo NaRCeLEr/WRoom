@@ -30,6 +30,19 @@ main {
 
 .aside_item {
     margin-top: 10px;
+    display: flex;
+}
+
+.aside_a {
+    display: block;
+    margin-top: 4px;
+    margin-left: 3px;
+}
+
+.icon {
+    margin-top: 2.5px;
+    height: 20px;
+    width: 20px;
 }
 
 .header {
@@ -115,6 +128,10 @@ main {
     width: 150px;
 }
 
+.edit_btn {
+    padding-bottom: 20px;
+}
+
 .list_area {
     margin-left: auto;
     margin-right: auto;
@@ -164,7 +181,7 @@ main {
 }
 
 .post {
-    min-height: 100px;
+    min-height: 150px;
     width: 500px;
     background-color: #fff;
 }
@@ -194,9 +211,10 @@ main {
     transition: .5s;
 }
 .box:hover input{
-    width: 200px;
-    background: #c6534f;
-    border-radius: 10px;
+    width: 250px;
+    height: 70px;
+    background: #FF7F50;
+    border-radius: 25px;
 }
 .box i{
     position: absolute;
@@ -218,4 +236,27 @@ main {
     margin-right: auto;
     padding: 32px;
     align-items: center;
+}
+
+
+.search_img {
+    height: 50px;
+    width: 50px;
+    border-radius: 40px;
+}
+
+.search_div {
+    margin-top: 10px;
+    display: flex;
+}
+
+.search_btn {
+    margin-left: 100px;
+    margin-top: 13px;
+    border: none;
+    bottom: none;
+    background-color: #FF7F50;
+    height: 30px;
+    width: 30px;
+    border-radius: 40px;
 }
