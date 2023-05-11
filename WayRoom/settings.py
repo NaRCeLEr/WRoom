@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'djoser',
     'channels',
     'main',
-    'chat',
+    'chatapp'
+    
     
 ]
 
