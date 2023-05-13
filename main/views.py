@@ -12,6 +12,8 @@ from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth import authenticate
 from .models import *
 import json
+from chatapp.models import *
+from django.db.models import Q
 
 from users.models import User as USER
 
@@ -109,7 +111,9 @@ def change(request):
 def profile(request):
     user = request.user
     posts = Post.objects.filter(user=request.user)
+    friends = USER.objects.filter(friends=request.user)
     context = {
+        'friends': friends,
         'posts': posts,
         'user': user,
         'title': profile
@@ -161,3 +165,57 @@ def addFriend(request):
         return redirect('home')
 
     return render(request, 'main/friends_search.html', {'pos': a})
+
+
+# def homechat(request):
+#     if request.method == 'POST':
+#         try:
+#             get_room = Room.get(user1=request.user)
+#             return redirect('room', room='test')
+        
+#         except Room.DoesNotExist:
+#             new_room = Room.objects.create(room_name = 'room', user1=request.user, user2=request.POST.get('name'))
+#             new_room.save()
+#             return redirect('room', room=new_room.room_name)
+#     a = request.POST.get('name')
+#     if a:
+#         return render(request, 'main/login.html')
+
+#     return render(request, 'main/login.html')
+
+def homechat(request):
+    if request.method == 'POST':
+        username = list(request.POST)[1]
+        other_user = User.objects.get(username=username)
+        current_user = request.user
+
+        rooms = Room.objects.filter((Q(user1 = other_user) & Q(user2 = current_user)) | (Q(user1=current_user) & Q(user2 = other_user)))
+        if rooms.exists():
+            room = rooms.first()
+            return redirect('room', room=room.pk, user=other_user)
+        else:
+            room = Room.objects.create(room_name='room', user1=current_user, user2=other_user)
+            room.save()
+            return redirect('room', room=room.pk, user=other_user)
+    return render(request, 'chatapp/index.html')
+
+
+
+def MessageView(request, room, user):
+    username = request.user.username
+
+    room = Room.objects.get(pk=room)
+    if request.method == 'POST':
+        message = request.POST['message']
+        print(message)
+        new_message = Message(room=room, sender=username, message=message)
+        new_message.save()
+
+    get_messages = Message.objects.filter(room=room)
+    
+    context = {
+        "messages": get_messages,
+        "user": username,
+        'reciever': user
+    }
+    return render(request, 'chatapp/message.html', context=context)

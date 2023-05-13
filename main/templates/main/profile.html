@@ -21,6 +21,15 @@
     </div>
 </div>
 
+<div class="friends">
+    <form action="{% url 'homechat' %}" method="post" name="aaaa">
+        {% csrf_token %}
+        {% for i in friends %}
+        <button type="submit" name="{{i}}">{{i}}</button>
+        {% endfor %}
+    </form>
+    
+</div>
 
 
 <div class="posts">

@@ -3,7 +3,7 @@ from .models import Room, Message
 
 def home(request):
     if request.method == 'POST':
-        username = request.POST['username']
+        username = request.user
         room = request.POST['room']
 
         try:
