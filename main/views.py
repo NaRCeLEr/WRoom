@@ -53,10 +53,16 @@ def home(request):
             posts.append(c)
 
     context = {
+        'ischeked': request.POST.get('check'),
         'posts': posts,
         'username': username,
         'title': 'home'
     }
+    if request.POST.get('check'):
+        print(request.POST)
+        name = request.POST.get('name')
+        
+
     return render(request, 'main/index.html', context=context)
 
 
@@ -72,7 +78,7 @@ def post_edit(request, pk):
          
         return redirect('home')
 
-
+ 
     context = {
             'form': form,
             'post': post
@@ -96,7 +102,7 @@ def change(request):
         new_email = form.cleaned_data.get('new_email')
         new_phone = form.cleaned_data.get('new_phone')
         user = User.objects.get(username=username)
-        user.image = request.FILES.get('new_image')
+        user.image = request.FILES.get('new_image') if request.FILES.get('new_image') else user.image
         user.username = new_username if new_username else user.username
         user.bio = new_bio if new_bio else user.bio
         user.email = new_email if new_email else user.email
@@ -108,10 +114,10 @@ def change(request):
     return render(request, 'main/profileedit.html', {'form': form})
 
 
-def profile(request):
-    user = request.user
-    posts = Post.objects.filter(user=request.user)
-    friends = USER.objects.filter(friends=request.user)
+def profile(request, pk):
+    user = USER.objects.get(pk=pk)
+    posts = Post.objects.filter(user=user)
+    friends = USER.objects.filter(friends=user)
     context = {
         'friends': friends,
         'posts': posts,
@@ -148,7 +154,7 @@ def PostV(request):
       }
       form = PostF(context)
       if form.is_valid():
-        post = Post(title=context['title'], text=context['text'], user=context['user'], cat_id=1, image = context['image'] if context['image'] else None)
+        post = Post(title=context['title'], text=context['text'], user=context['user'], image = context['image'] if context['image'] else None)
         post.save()
         return redirect('home')
       return render(request, 'main/createpost.html', {'form': form})
@@ -219,3 +225,17 @@ def MessageView(request, room, user):
         'reciever': user
     }
     return render(request, 'chatapp/message.html', context=context)
+
+
+class AddComment(View):
+    def post(self, request, pk):
+        context = {
+            'user': request.user,
+            'post': pk,
+            'text': request.POST.get('comment-text')
+        }
+        if context:
+            comm = Comments(user=context['user'], post_id=context['post'], text=context['text'])
+            comm.save()
+
+        return redirect('home')

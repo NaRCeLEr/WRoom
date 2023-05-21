@@ -8,7 +8,6 @@ $(document).on('submit', '#message', function(e){
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
         }
     });
-    $( ".parent" ).load(window.location.href + " .parent" );
 })
 
 $(document).ready(function(){

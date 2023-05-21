@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     height: auto;
-    background-color: #e4e3e3;
+    background-color: #E9E5E5;
 }
 
 a {
@@ -13,24 +13,28 @@ a {
 main {
     width: 80%;
     margin-bottom: 5px;
-    float: right;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .aside {
-    margin-left: 5px;
-    margin-top: 10px;
+    margin-left: 90px;
+    margin-top: 35px;
     border-radius: 10px;
     border: 2px solid #fff;
     width: 15%;
     background-color: #fff;
-    padding-left: 10px;
-    z-index: -1;
+    align-items: center;
     position: absolute;
+    min-height: 300px;
 }
 
 .aside_item {
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 10px;
     display: flex;
+    width: 150px;
 }
 
 .aside_a {
@@ -49,27 +53,31 @@ main {
     margin: 0;
     padding: 0px;
     display: flex;
-    background-color: #FF7F50;
-    max-height: 100px;
+    background-color: #F87950;
+    max-height: 80px;
+}
+.header h1 {
+    color: #fff;
 }
 
-.logo {display: flex; width: 210px;}
+.logo {display: flex; width: 210px; margin-left: 73px;}
 .title {margin-left: 20px; width: 200px; color: #593507;}
 .register {text-align: center;}
 
-.reg {
-    width: 30%;
+.User {
     padding-top: 1%;
-    font-size: 30px;
-    margin-left: 73%;
-    float: right;
+    margin-left: auto;
+    margin-right: 60px;
+    width: 170px;
     display: flex;
 }
 
 .username_head {
     margin-right: 10px;
     margin-top: 2.5%;
-    color: black;
+    color: #fff;
+    font-size: 30px;
+    margin-left: 10px;
 }
 
 
@@ -85,12 +93,11 @@ main {
 .img {align-items: center;}
 .profile {
     background-color: #fff;
-    margin-top: 20px;
-    width: 400px;
+    margin-top: 30px;
+    width: 500px;
     height: 600px;
     padding: 32px;
     border-radius: 10px;
-    border: 1px solid #FBE8D3;
     box-shadow: 0 4px 16px #ccc;
     font-family: sans-serif;
     letter-spacing: 1px;
@@ -100,14 +107,26 @@ main {
     width: 500px;
 }
 
-.profile-img {height: 200px; width: 200px; margin-left: auto; margin-right: auto; display: block;}
+.profile_head {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 220px;
+}
+.dots {
+    height: 20px;
+    width: 20px;
+    margin-left: 100px;
+}
 
-.profile_items {margin-left: auto; margin-right: auto; display: block; margin-top: 10px; margin-bottom: 0;}
+.profile-img {height: 200px; width: 200px; margin-left: auto; margin-right: auto; display: block; border-radius: 100px;}
+
+.profile_items {margin-left: auto; margin-right: auto; display: block;}
     
-.username {margin-left: auto; font-size: 70px; margin-right: auto; text-align: center; margin-top: 10px; margin-bottom: 10px;}
-.item-phone {text-align: center; font-size: 20px;}
-.item-email {text-align: center; font-size: 20px;}
-.item-bio {text-align: center; font-size: 20px; margin-top: 5px;}
+.username {margin-left: auto; font-size: 70px; margin-right: auto; text-align: center; margin-top: 0; margin-bottom: 10px; color: #7C7C7C; font-size: 50px;}
+.item-phone {text-align: center; font-size: 20px; margin-top: 30px;}
+.item-email {text-align: center; font-size: 20px; margin-top: 80px;}
+.item-bio {text-align: center; font-size: 20px; margin-top: 5px; color: #939393;}
 .change_btn {
     letter-spacing: 1px;
     font-size: 16px;
@@ -124,8 +143,11 @@ main {
 }
 
 .post_img {
-    height: 150px;
-    width: 150px;
+    height: 300px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
 }
 
 .edit_btn {
@@ -141,8 +163,7 @@ main {
     padding-left: 32px;
     padding-bottom: 25px;
     padding-right: 32px;
-    border-radius: 10px;
-    border: 1px solid #FBE8D3;
+    border-radius: 20px;
     box-shadow: 0 4px 16px #ccc;
     font-family: sans-serif;
     letter-spacing: 1px;
@@ -164,10 +185,23 @@ main {
     display: flex;
 }
 
+.prof p {
+    font-weight: 800;
+    font-size: 15px;
+    margin-left: 60px
+}
+
 .prof_username {
     margin-left: 7px;
-    margin-top: 15px;
+    margin-top: 8px;
 }
+.prof_username a {
+    color: #7C7C7C;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
 
 .logout_btn {
     padding: 10px 20px;
@@ -184,6 +218,42 @@ main {
     min-height: 150px;
     width: 500px;
     background-color: #fff;
+}
+
+.post_other {
+    margin-top: 30px;
+}
+
+.search_label {
+    position: absolute;
+    margin-top: 42px;
+    margin-left: 10px;
+    width: 15px;
+    height: 15px;
+
+}
+
+.label_img {
+    height: 23px;
+    width: 23px;
+}
+
+.search {
+    width: 400px;
+    height: 35px;
+    background-color: #D9D9D9;
+    margin-top: 35px;
+    border-radius: 50px;
+    border: none;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1em;
+}
+.sear {
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
 }
 
 .box{
@@ -259,4 +329,207 @@ main {
     height: 30px;
     width: 30px;
     border-radius: 40px;
+}
+
+.best_friends {
+    height: 390px;
+    width: 680px;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.best_title {
+    display: flex;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    font-size: 30px;
+}
+
+.column {
+    margin-top: 11%;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 48px;
+    width: 48px;
+}
+
+.best_friend {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.best_friend li {
+    color: #7C7C7C;
+    text-decoration: none;
+    list-style: none;
+    margin-top: 30px;
+    font-size: 35px;
+    text-align: center;
+}
+
+.best_friend ul {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
+.friends {
+    height: 300px;
+    width: 580px;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.friends h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.friend {
+    margin-top: 20px;
+    margin-left: 30px;
+    width: 100px;
+}
+
+.friend_btn {
+    border: none;
+    font-weight:bold;
+    background-color: #fff;
+    font-size: 20px;
+}
+
+.others_friends {
+    margin-left: 15px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.profile_post_area {
+    margin-top: 20px;
+    width: 900px;
+    display: flex;
+}
+
+
+.profile_post {
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-right: 33px;
+}
+
+.profile_post_img {
+    height: 80px;
+    width: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile_post_title {
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile_post_title h4 {
+    text-align: center;
+}
+
+.profile_post_date h4 {
+    text-align: right;
+    margin-right: 5px;
+}
+
+.addpost {
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+    background-color: #fff;
+    border-radius: 20px;
+}
+.new_post {
+    text-align: center;
+}
+
+.add_title {
+    border: none;
+    border-radius: 20px;
+    margin-top: 20px;
+    background-color: #ccc;
+    margin-left: auto;
+    margin-right: auto;
+    width: 430px;
+    height: 70px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+.add_text {
+    border: none;
+    border-radius: 20px;
+    margin-top: 20px;
+    background-color: #ccc;
+    margin-left: auto;
+    margin-right: auto;
+    width: 620px;
+    min-height: 150px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+.add_image input {
+    border: none;
+    border-radius: 20px;
+    background-color: #ccc;
+    margin-left: auto;
+    margin-right: auto;
+}
+.form-post {
+    width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.create {
+    border-radius: 20px;
+    border: none;
+    height: 40px;
+    width: 90px;
+    margin-left: 40%;
+}
+
+.post_title {
+    text-align: center;
+}
+
+.post_text_d {
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+    text-align: center;
+    font-size: 15px;
+
+}
+
+#id_title {
+    margin-left: 15%;
+}
+
+.hidden_a {
+    display: none;
+    margin-top: 20px;
+    margin-right: 10px;
 }

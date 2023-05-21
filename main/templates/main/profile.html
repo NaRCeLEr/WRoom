@@ -1,11 +1,19 @@
 {% extends 'main/base.html' %}
-
+{% load static %}
 
 {% block content %}
 <div class="profile">
-    {% if user.image %}
-    <p><img src="{{ user.image.url }}" alt="Hello" class="profile-img"></p>
-    {% endif %}
+    <div class="profile_head">
+        {% if user.image %}
+        <p><img src="{{ user.image.url }}" alt="Hello" class="profile-img"></p>
+        {% endif %}
+        <img src="{% static 'main/img/dots.png' %}" alt="" class="dots" id="dots" onclick="hid()">
+        <div class="hidden_a" id="hidden_a">
+            <a href="{% url 'logout' %}" class="logout_btn">LogOut</a>
+            <a href="{% url 'change' %}" class="change_btn">Edit</a>
+        </div>
+    </div>
+    
     <div class="username">
         <h1 class="username">{{user.username}}</h1>
     </div>
@@ -15,24 +23,50 @@
         <h3 class="item-email">{{user.email}}</h3>
         <h3 class="item-phone">{{user.phone}}</h3>
     </div>
-    <a href="{% url 'change' %}" class="change_btn">Edit</a>
+    <!-- <a href="{% url 'change' %}" class="change_btn">Edit</a>
     <div class="logout">
         <a href="{% url 'logout' %}" class="logout_btn">LogOut</a>
+    </div> -->
+</div>
+
+<div class="best_friends">
+    <div class="best_title">
+        <img src="{% static 'main/img/column.png' %}" alt="" class="column">
+        <h1>Best Friends</h1>
+        <img src="{% static 'main/img/column.png' %}" alt="" class="column">
+    </div>
+
+    <div class="best_friend">
+        <ul>
+            <li>Sasha</li>
+            <li>Artem</li>
+            <li>Zaur</li>
+        </ul>
     </div>
 </div>
 
 <div class="friends">
+    <h1>Friends</h1>
     <form action="{% url 'homechat' %}" method="post" name="aaaa">
         {% csrf_token %}
         {% for i in friends %}
-        <button type="submit" name="{{i}}">{{i}}</button>
+        <div class="friend">
+            {% if forloop.counter <= 5 %}
+            <button type="submit" name="{{i}}" class="friend_btn">{{i}}</button>
+            {% else %}
+            <div class="others_friends">
+                <a href="#">Others...</a>
+            </div>
+            {% endif %}
+        </div>
+        
         {% endfor %}
     </form>
     
 </div>
 
 
-<div class="posts">
+<!-- <div class="posts">
     {% for post in posts %}
     <div class="list_area">
         <div class="post">
@@ -46,10 +80,43 @@
             <div class="edit_btn">
                 <a href="{% url 'post_edit' pk=post.pk %}" class="change_btn">Edit</a>
             </div>
+        </div> 
+    </div>
+    {% endfor %}
+</div> -->
+
+
+<div class="profile_post_area">
+    {% for post in posts %}
+    <div class="profile_post">
+        <div class="profile_post_title">
+            <h4>{{post.title}}</h4>
         </div>
-        
-        
+        <div class="profile_post_img">
+            {% if post.image %}
+            <img src="{{post.image.url}}" alt="" class="profile_post_img">
+            {% else %}
+            <p class="post_text">{{post.text|truncatechars:50}}...</p>
+            {% endif %}
+        </div>
+        <div class="profile_post_date">
+            <h4>{{post.time|date:"M d"}}</h4>
+        </div>
     </div>
     {% endfor %}
 </div>
+
+
+<script>
+    function hid() {
+        var a = document.getElementById('hidden_a');
+        if (a.style.display == 'block') {
+            a.style.display = 'none';
+        }
+        else {
+            a.style.display = 'block';
+        }
+    }
+    
+</script>
 {% endblock %}

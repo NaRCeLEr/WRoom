@@ -2,17 +2,33 @@
 
 {% block content %}
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% load static %}
+<div class="sear">
+    <label for="search" class="search_label"><img src="{% static 'main/img/lupa.png' %}" alt="" class="label_img"></label>
+    <input type="search" placeholder="search" class="search">
+</div>
 
 {% for i in posts %}
 <div class="list_area">  
     <div class="post">
-        {{fr}}
         <div class="prof">
-            {% if i.user.image %}
-            <a href=
-            ""><img src="{{i.user.image.url}}" alt="" class="prof_post_img"></a>
-            {% endif %}
-            <h4 class="prof_username"><a href="{% url 'profile' %}">{{i.user.username}}</a></h4>
+            <div class="profile_img">
+                {% if i.user.image %}
+                <a href=
+                ""><img src="{{i.user.image.url}}" alt="" class="prof_post_img"></a>
+                {% endif %}
+            </div>
+            <div class="profile_username">
+                <h4 class="prof_username"><a href="{% url 'profile' pk=i.user.pk %}">{{i.user.username}}</a></h4>
+            </div>
+            <div class="date">
+                <p>{{i.time|date:"M d" }}</p>
+            </div>
+            
+        </div>
+        <div>
+            <h1 class="post_title">{{i.title}}</h1>
         </div>
         {% if i.image %}
         <div class="post_img">
@@ -20,14 +36,29 @@
         </div>
         {% endif %}
         <div class="post_other">
-            <div class="post_title">
-                {{i.title}}
-            </div>
             <div class="post_text">
                 {{i.text}}
             </div>
-            
         </div>
+        <!-- <div class="comments">
+            <form action="{% url 'addcomment' pk=i.pk %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" value="{{i}}">
+                <label for="text">cooment</label>
+                <textarea name="comment-text" id="text" cols="30" rows="10"></textarea>
+                <button type="submit">Send</button>
+            </form>
+
+            {% for com in i.comments_set.all %}
+            {{com.user}}
+            {{com.text}}
+            {% endfor %}
+            {% load static %}
+            
+            <form action="" method="post" id="like" name="{{i.pk}}">
+                <input type="checkbox" id="ch" name="{{i.pk}}" class="inputForName">
+            </form>
+        </div> -->
     </div>
 </div>
 
@@ -35,8 +66,5 @@
 
 {% endfor %}
 
-<script>
-    a = '{{posts}}'
-    console.log(a)
-</script>
+<script src="{% static 'main/js/like.js' %}"></script>
 {% endblock %}

@@ -8,7 +8,6 @@
 </head>
 <body>
     <div class="header">
-    
         <div class="logo">
             <div class="img">
                 <a href="{% url 'home' %}"><img src="{% static 'main/img/logo.png' %}" alt="WR" class="logophoto"></a>
@@ -18,19 +17,17 @@
             </div>
             
         </div>
-        {% if request.user.is_authenticated %}
-        <div class="reg">
-            <a href="{% url 'profile' %}" class="username_head">{{username}}</a>
-            {% if user.image %}
-            <img src="{{user.image.url}}" alt="" class="prof_post_img">
+        <div class="User">
+            {% if request.user.is_authenticated %}
+                {% if user.image %}
+                <img src="{{user.image.url}}" alt="" class="prof_post_img">
+                {% endif %}
+                <a href="{% url 'profile' pk=user.pk %}" class="username_head">{{username}}</a>
+            {% else %}
+                <a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Войти</a>
             {% endif %}
         </div>
-        {% else %}
-        <div class="reg">
-            <a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Войти</a>
-            
-        </div>
-        {% endif %}
+        
         
     </div>
 
@@ -42,10 +39,10 @@
             <img src="{% static 'main/img/addpost.png' %}" alt="" class="icon"><a href="{% url 'create_post' %}" class="aside_a">Create Post</a>
         </div>
         <div class="aside_item">
-            <img src="{% static 'main/img/lup.png' %}" alt="" class="icon"><a href="{% url 'Search_friends' %}" class="aside_a">Find friends</a>
+            <img src="{% static 'main/img/find_friends.png' %}" alt="" class="icon"><a href="{% url 'Search_friends' %}" class="aside_a">Find friends</a>
         </div>
         <div class="aside_item">
-            <img src="{% static 'main/img/profile.png' %}" alt="" class="icon"><a href="{% url 'profile' %}" class="aside_a">Profile</a>
+            <img src="{% static 'main/img/profile.png' %}" alt="" class="icon"><a href="{% url 'profile' pk=user.pk %}" class="aside_a">Profile</a>
         </div>
         <div class="aside_item">
             <img src="{% static 'main/img/logout.png' %}" alt="" class="icon"><a href="{% url 'logout' %}" class="aside_a">LogOut</a>

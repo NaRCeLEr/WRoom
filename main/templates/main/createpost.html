@@ -1,21 +1,39 @@
-{% extends 'main/base.html' %}
-
-{% block content %}
-
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% for i in form %}
-    <div class="form-post">
-        {{i}}
-        {% if i.name != 'user' %}
-        {{i.name}}
-        {% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+</head>
+<body>
+    <h1 class="new_post">New Post</h1>
+    <div class="addpost">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for i in form %}
+            <div class="form-post">
+                {{i}}
+                {% if i.name != 'user' %}
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="create">Create</button>
+        </form>
     </div>
-    
-    {% endfor %}
-    <button type="submit">Create</button>
-</form>
+
+
 <script>
     document.getElementById('id_user').remove()
+
+    document.getElementById('id_title').classList.add('add_title');
+    document.getElementById('id_text').classList.add('add_text');
+    document.getElementById('id_image').classList.add('add_image');
+
+    const title = document.getElementById('id_title');
+    title.placeholder = 'title';
+
+    const text =document.getElementById('id_text');
+    text.placeholder = 'text';
 </script>
-{% endblock %}
+</body>
+</html>

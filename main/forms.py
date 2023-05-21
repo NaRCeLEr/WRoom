@@ -30,7 +30,7 @@ class AuthForm(ModelForm):
 
 
 class ChangeForm(forms.Form):
-    new_image = forms.ImageField()
+    new_image = forms.ImageField(required=False)
     new_username = forms.CharField(max_length=100)
     new_bio = forms.CharField(widget=forms.Textarea(), required=False)
     new_email = forms.EmailField(required=False)
