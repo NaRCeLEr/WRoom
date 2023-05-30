@@ -6,7 +6,7 @@ from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, View, ListView
+from django.views.generic import CreateView, View, ListView, DetailView
 from .forms import *
 from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth import authenticate
@@ -52,15 +52,20 @@ def home(request):
         for c in x:
             posts.append(c)
 
+    
+    if request.POST.get('check'):
+        print(request.POST)
+        name = request.POST.get('name')
+
+    teams = Team.objects.filter(users=request.user)
+
     context = {
         'ischeked': request.POST.get('check'),
         'posts': posts,
         'username': username,
-        'title': 'home'
+        'title': 'home',
+        'teams': teams
     }
-    if request.POST.get('check'):
-        print(request.POST)
-        name = request.POST.get('name')
         
 
     return render(request, 'main/index.html', context=context)
@@ -122,7 +127,9 @@ def profile(request, pk):
         'friends': friends,
         'posts': posts,
         'user': user,
-        'title': profile
+        'title': profile,
+        'username': request.user.username,
+        'teams': Team.objects.filter(users=request.user),
     }
     return render(request, 'main/profile.html', context=context)
 
@@ -239,3 +246,34 @@ class AddComment(View):
             comm.save()
 
         return redirect('home')
+
+
+
+class PostDetail(DetailView):
+    model = Post
+    template_name = 'main/post_detail.html'
+    context_object_name = 'post'
+
+
+class TeamDetail(DetailView):
+    model = Team
+    template_name = 'main/team_home.html'
+    context_object_name = 'Team'
+
+    def get_context_data(self, **kwargs: Any):
+        context = super().get_context_data(**kwargs)
+        context['teams'] = Team.objects.filter(users=self.request.user)
+        context['username'] = self.request.user.username
+        return context
+
+
+class RoomDetail(DetailView):
+    model = Group_Room
+    template_name = 'main/room_detail.html'
+    context_object_name = 'Room'
+
+    def get_context_data(self, **kwargs: Any):
+        context = super().get_context_data(**kwargs)
+        context['teams'] = Team.objects.filter(users=self.request.user)
+        context['username'] = self.request.user.username
+        return context

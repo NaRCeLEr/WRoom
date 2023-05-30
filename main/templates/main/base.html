@@ -47,8 +47,26 @@
         <div class="aside_item">
             <img src="{% static 'main/img/logout.png' %}" alt="" class="icon"><a href="{% url 'logout' %}" class="aside_a">LogOut</a>
         </div>
-        
     </aside>
+
+
+    <div class="Teams">
+        <div class="teams_title">
+            <h3>Teams</h3>
+        </div>
+        <div class="Teams_items">
+            {% for i in teams %}
+            {% if forloop.counter <= 7 %}
+            <a href="{{i.get_absolute_url}}">{{i.title}}</a>
+            {% else %}
+            <div class="others_friends">
+                <a href="#">Others...</a>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
     <main>
         {% block content %}
         {% endblock %}

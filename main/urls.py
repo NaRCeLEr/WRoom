@@ -18,5 +18,8 @@ urlpatterns = [
     path('homechat', homechat, name='homechat'),
     path('room/<int:room>/<str:user>/', MessageView, name='room'),
     path('addcomment/<int:pk>/', AddComment.as_view(), name='addcomment'),
+    path('post/<int:pk>/', PostDetail.as_view(), name='post_detail'),
+    path('team/<int:pk>/', TeamDetail.as_view(), name='team_detail'),
+    path('room/<int:pk>/', RoomDetail.as_view(), name='room_detail'),
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

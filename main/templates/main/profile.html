@@ -88,21 +88,23 @@
 
 <div class="profile_post_area">
     {% for post in posts %}
-    <div class="profile_post">
-        <div class="profile_post_title">
-            <h4>{{post.title}}</h4>
+    <a href="{{ post.get_absolute_url }}">
+        <div class="profile_post">
+            <div class="profile_post_title">
+                <h4>{{post.title}}</h4>
+            </div>
+            <div class="profile_post_img">
+                {% if post.image %}
+                <img src="{{post.image.url}}" alt="" class="profile_post_img">
+                {% else %}
+                <p class="post_text">{{post.text|truncatechars:50}}...</p>
+                {% endif %}
+            </div>
+            <div class="profile_post_date">
+                <h4>{{post.time|date:"M d"}}</h4>
+            </div>
         </div>
-        <div class="profile_post_img">
-            {% if post.image %}
-            <img src="{{post.image.url}}" alt="" class="profile_post_img">
-            {% else %}
-            <p class="post_text">{{post.text|truncatechars:50}}...</p>
-            {% endif %}
-        </div>
-        <div class="profile_post_date">
-            <h4>{{post.time|date:"M d"}}</h4>
-        </div>
-    </div>
+    </a>
     {% endfor %}
 </div>
 

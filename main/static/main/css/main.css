@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    height: auto;
+    height: 100%;
     background-color: #E9E5E5;
 }
 
@@ -87,7 +87,6 @@ main {
     align-items: center;
     padding-left: 10px;
     padding-top: 5px;
-
 }
 
 .img {align-items: center;}
@@ -532,4 +531,126 @@ main {
     display: none;
     margin-top: 20px;
     margin-right: 10px;
+}
+
+
+.Teams {
+    margin-top: 200px;
+    float: right;
+    margin-right: 100px;
+    background-color: #fff;
+    border-radius: 15px;
+    min-width: 200px;
+    min-height: 350px;
+}
+
+.teams_title {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.Teams_items {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.team {
+    margin-left: auto;
+    margin-right: auto;
+    width: 65%;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 20px;
+    min-height: 80vh;
+}
+
+.logo_img {
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+    border: 2px solid #ffd52d;
+    margin-top: 20px;
+}
+
+.team_logo {
+    margin-top: 20px;
+}
+
+.team_title h1 {
+    margin-top: 8px;
+    font-size: 45px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.admin {
+    color: #FF7F50;
+    font-size: 30px;
+}
+
+.team_users {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 300px;
+    align-items: center;
+}
+
+.user {
+    margin-right: 7px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.team_stars {
+    margin-top: 15px;
+    font-size: 30px;
+    padding-top: 18px;
+}
+
+.team_status {
+    margin-top: 15px;
+    font-size: 25px;
+}
+
+.team_achievements {
+    height: 130px;
+    width: 170px;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    background-color: #ccc;
+}
+
+.Room {
+    min-height: 500px;
+    width: 700px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+
+.room_title {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ROOM {
+    display: flex;
+}
+
+.Teams_list {
+    position: absolute;
+    margin-left: 50px;
+    background-color: #fff;
+    border-radius: 20px;
+    width: 170px;
+    min-height: 70px;
+    text-align: center;
+    margin-top: 100px;
 }

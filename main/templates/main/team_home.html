@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <div class="img">
+                <a href="{% url 'home' %}"><img src="{% static 'main/img/logo.png' %}" alt="WR" class="logophoto"></a>
+            </div>
+            <div class="title">
+                <h1 translate="no">WRoom</a>
+            </div>
+            
+        </div>
+        <div class="User">
+            {% if request.user.is_authenticated %}
+                {% if user.image %}
+                <img src="{{user.image.url}}" alt="" class="prof_post_img">
+                {% endif %}
+                <a href="{% url 'profile' pk=user.pk %}" class="username_head">{{username}}</a>
+            {% else %}
+                <a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Войти</a>
+            {% endif %}
+        </div>
+        
+        
+    </div>
+
+
+
+
+    <div class="team">
+        {% if Team.logo %}
+        <div class="team_logo">
+            <img src="{{Team.logo.url}}" alt="" class="logo_img">
+        </div>
+        {% endif %}
+        <div class="team_title">
+            <h1>{{Team.title}}</h1>
+        </div>
+    
+        <div class="team_achievements">
+            <div class="team_stars">
+                {{Team.Stars}}
+            </div>
+            <div class="team_status">
+                {{Team.status}}
+            </div>
+        </div>
+    
+        <div class="team_description">
+            <p>{{Team.description}}</p>
+        </div>
+        
+        <div class="team_admins">
+            {% for i in Team.admins.all %}
+            <h3 class="admin"><a href="{% url 'profile' pk=i.pk %}" class="admin">{{i.username}}</a></h3>
+            {% endfor %}
+        </div>
+    
+        <div class="team_users">
+            {% for i in Team.users.all %}
+            <!-- <h4 class="team_user">{{i.username}}</h4> -->
+            <a href="{% url 'profile' pk=i.pk %}" class="user">{{i.username}}</a>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
